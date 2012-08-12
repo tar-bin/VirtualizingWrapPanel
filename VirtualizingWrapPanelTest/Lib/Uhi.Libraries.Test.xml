@@ -1,0 +1,649 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Uhi.Libraries.Test</name>
+    </assembly>
+    <members>
+        <member name="T:Uhi.Libraries.Test.EventAssertion">
+            <summary>
+            イベントの発行をテストするための拡張メソッド群。
+            </summary>
+            <remarks>
+            イベントの発行をテストするための拡張メソッド群。
+            </remarks>
+        </member>
+        <member name="F:Uhi.Libraries.Test.EventAssertion.IsCalled">
+            <summary>
+            指定したイベントが発行されたかどうかを識別する値を格納するディクショナリ。
+            </summary>
+            <remarks>
+            指定したイベントが発行されたかどうかを識別する値を格納するディクショナリ。<br />
+            key は「クラス名.イベント名」の形式。
+            </remarks>
+        </member>
+        <member name="F:Uhi.Libraries.Test.EventAssertion.Tracker">
+            <summary>
+            指定したイベントの発行を追跡するための
+            <see cref="T:System.Threading.ManualResetEvent"/> を格納するディクショナリ。
+            </summary>
+            <remarks>
+            指定したイベントの発行を追跡するための
+            <see cref="T:System.Threading.ManualResetEvent"/> を格納するディクショナリ。<br/>
+            key は「クラス名.イベント名」の形式。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.EventAssertion.Trace``1(System.Object,System.String)">
+            <summary>
+            指定したイベントの監視を開始する。
+            </summary>
+            <typeparam name="TArgs">イベント引数の型。</typeparam>
+            <param name="target">監視対象のオブジェクト。</param>
+            <param name="eventName">監視対象のイベント名。</param>
+            <remarks>
+            指定したイベントの監視を開始する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.EventAssertion.Trace``1(System.Object,System.String,System.Predicate{``0})">
+            <summary>
+            指定したイベントの監視を開始する。
+            </summary>
+            <typeparam name="TArgs">イベント引数の型。</typeparam>
+            <param name="target">監視対象のオブジェクト。</param>
+            <param name="eventName">監視対象のイベント名。</param>
+            <param name="where">イベントに対する条件。</param>
+            <remarks>
+            指定したイベントの監視を開始する。<br />
+            イベント引数が指定した条件を満たす場合のみイベントが発生したとみなす。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.EventAssertion.IsRaised(System.Object,System.String,System.Int32)">
+            <summary>
+            指定したイベントが発行されたかどうかを判定する値を取得する。
+            </summary>
+            <param name="target">監視対象のオブジェクト。</param>
+            <param name="eventName">監視対象のイベント名。</param>
+            <param name="timeout">イベントの発行を待機する時間（ミリ秒）。デフォルトは 1 秒。</param>
+            <returns>イベントが発行された場合は true、そうでない場合は false。</returns>
+            <remarks>
+            指定したイベントが発行されたかどうかを判定する値を取得する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.EventAssertion.VerifyAllRaised(System.Object,System.Int32)">
+            <summary>
+            監視対象のすべてのイベントが発行されたかどうかを判定する値を取得する。
+            </summary>
+            <param name="target">監視対象のオブジェクト。</param>
+            <param name="timeout">イベントの発行を待機する時間（ミリ秒）。デフォルトは 1 秒。</param>
+            <remarks>
+            監視対象のすべてのイベントが発行されたかどうかを判定する値を取得する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.EventAssertion.Clear">
+            <summary>
+            イベントの監視状況をクリアする。
+            </summary>
+            <remarks>
+            イベントの監視状況をクリアする。
+            </remarks>
+        </member>
+        <member name="T:Uhi.Libraries.Test.UIAutomationExtension">
+            <summary>
+            UI オートメーション用の拡張メソッド群。
+            </summary>
+            <remarks>
+            UI オートメーション用の拡張メソッド群。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.UIAutomationExtension.FromName(System.Windows.Automation.AutomationElement,System.String,System.Int32)">
+            <summary>
+            指定した名前を持つ UI オートメーション要素を取得する。
+            </summary>
+            <param name="target">検索対象の要素の親要素。</param>
+            <param name="name">検索する要素の名前。</param>
+            <param name="retryCount">要素が見つからなかった場合に検索を試行する回数。デフォルトは 50 回。</param>
+            <returns>指定した名前を持つ UI オートメーション要素</returns>
+            <remarks>
+            指定した名前を持つ UI オートメーション要素を取得する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.UIAutomationExtension.FromId(System.Windows.Automation.AutomationElement,System.String,System.Int32)">
+            <summary>
+            指定した ID を持つ UI オートメーション要素を取得する。
+            </summary>
+            <param name="target">検索対象の要素の親要素。</param>
+            <param name="id">検索する要素の ID。</param>
+            <param name="retryCount">要素が見つからなかった場合に検索を試行する回数。デフォルトは 50 回。</param>
+            <returns>指定した ID を持つ UI オートメーション要素</returns>
+            <remarks>
+            指定した ID を持つ UI オートメーション要素を取得する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.UIAutomationExtension.FromId(System.Windows.Automation.AutomationElement,System.String,System.String,System.Int32)">
+            <summary>
+            指定した ID とクラス名を持つ UI オートメーション要素を取得する。
+            </summary>
+            <param name="target">検索対象の要素の親要素。</param>
+            <param name="id">検索する要素の ID。</param>
+            <param name="className">検索する要素のクラス名。</param>
+            <param name="retryCount">要素が見つからなかった場合に検索を試行する回数。デフォルトは 50 回。</param>
+            <returns>指定した ID を持つ UI オートメーション要素</returns>
+            <remarks>
+            指定した ID とクラス名を持つ UI オートメーション要素を取得する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.UIAutomationExtension.ElementAt(System.Windows.Automation.AutomationElement,System.Int32,System.Int32)">
+            <summary>
+            指定した要素の子のうち、index 番目に出現する UI オートメーション要素を取得する。
+            </summary>
+            <param name="target">検索対象の要素の親要素。</param>
+            <param name="index">検索対象の要素の出現順。</param>
+            <param name="retryCount">要素が見つからなかった場合に検索を試行する回数。デフォルトは 50 回。</param>
+            <returns>検索対象の UI オートメーション要素。</returns>
+            <remarks>
+            指定した要素の子のうち、index 番目に出現する UI オートメーション要素を取得する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.UIAutomationExtension.AsValue(System.Windows.Automation.AutomationElement)">
+            <summary>
+            UI オートメーション要素の <see cref="T:System.Windows.Automation.ValuePattern"/> を取得する。
+            </summary>
+            <param name="target">UI オートメーション要素。</param>
+            <returns>UI オートメーション要素の <see cref="T:System.Windows.Automation.ValuePattern"/>。</returns>
+            <remarks>
+            UI オートメーション要素の <see cref="T:System.Windows.Automation.ValuePattern"/> を取得する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.UIAutomationExtension.AsInvoke(System.Windows.Automation.AutomationElement)">
+            <summary>
+            UI オートメーション要素の <see cref="T:System.Windows.Automation.InvokePattern"/> を取得する。
+            </summary>
+            <param name="target">UI オートメーション要素。</param>
+            <returns>UI オートメーション要素の <see cref="T:System.Windows.Automation.InvokePattern"/>。</returns>
+            <remarks>
+            UI オートメーション要素の <see cref="T:System.Windows.Automation.InvokePattern"/> を取得する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.UIAutomationExtension.AsListItemCollection(System.Windows.Automation.AutomationElement)">
+            <summary>
+            UI オートメーション要素の <see cref="F:System.Windows.Automation.ControlType.ListItem"/> を取得する。
+            </summary>
+            <param name="target">UI オートメーション要素。</param>
+            <returns>UI オートメーション要素の <see cref="F:System.Windows.Automation.ControlType.ListItem"/>。</returns>
+            <remarks>
+            UI オートメーション要素の <see cref="F:System.Windows.Automation.ControlType.ListItem"/> を取得する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.UIAutomationExtension.AsSelectionItem(System.Windows.Automation.AutomationElement)">
+            <summary>
+            UI オートメーション要素の <see cref="T:System.Windows.Automation.SelectionItemPattern"/> を取得する。
+            </summary>
+            <param name="target">UI オートメーション要素。</param>
+            <returns>UI オートメーション要素の <see cref="T:System.Windows.Automation.SelectionItemPattern"/>。</returns>
+            <remarks>
+            UI オートメーション要素の <see cref="T:System.Windows.Automation.SelectionItemPattern"/> を取得する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.UIAutomationExtension.AsSelectionItemCollection(System.Windows.Automation.AutomationElement)">
+            <summary>
+            UI オートメーション要素の <see cref="T:System.Windows.Automation.SelectionItemPattern"/> を取得する。
+            </summary>
+            <param name="target">UI オートメーション要素。</param>
+            <returns>UI オートメーション要素の <see cref="T:System.Windows.Automation.SelectionItemPattern"/>。</returns>
+            <remarks>
+            UI オートメーション要素の <see cref="T:System.Windows.Automation.SelectionItemPattern"/> を取得する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.UIAutomationExtension.AsExpandCollapse(System.Windows.Automation.AutomationElement)">
+            <summary>
+            UI オートメーション要素の <see cref="T:System.Windows.Automation.ExpandCollapsePattern"/> を取得する。
+            </summary>
+            <param name="target">UI オートメーション要素。</param>
+            <returns>UI オートメーション要素の <see cref="T:System.Windows.Automation.ExpandCollapsePattern"/>。</returns>
+            <remarks>
+            UI オートメーション要素の <see cref="T:System.Windows.Automation.ExpandCollapsePattern"/> を取得する。
+            </remarks>
+        </member>
+        <member name="P:Uhi.Libraries.Test.UIAutomationExtension.Root">
+            <summary>
+            <see cref="T:System.Windows.Automation.AutomationElement"/> のルート要素
+            （デスクトップ）を取得する。
+            </summary>
+        </member>
+        <member name="T:Uhi.Libraries.Test.INotifyPropertyChangedExtension">
+            <summary>
+            <see cref="T:System.ComponentModel.INotifyPropertyChanged"/> のテストのための
+            拡張メソッド群。
+            </summary>
+            <remarks>
+            <see cref="T:System.ComponentModel.INotifyPropertyChanged"/> のテストのための
+            拡張メソッド群。
+            </remarks>
+        </member>
+        <member name="F:Uhi.Libraries.Test.INotifyPropertyChangedExtension.IsCalled">
+            <summary>
+            指定したプロパティに対して <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
+            が通知されたかどうかを識別する値を格納するディクショナリ。
+            </summary>
+            <remarks>
+            指定したプロパティに対して <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
+            が通知されたかどうかを識別する値を格納するディクショナリ。<br/>
+            key は「クラス名.メソッド名」の形式。
+            </remarks>
+        </member>
+        <member name="F:Uhi.Libraries.Test.INotifyPropertyChangedExtension.Tracker">
+            <summary>
+            指定したプロパティに対するイベントの発行を追跡するための
+            <see cref="T:System.Threading.ManualResetEvent"/> を格納するディクショナリ。
+            </summary>
+            <remarks>
+            指定したプロパティに対するイベントの発行を追跡するための
+            <see cref="T:System.Threading.ManualResetEvent"/> を格納するディクショナリ。<br/>
+            key は「クラス名.メソッド名」の形式。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.INotifyPropertyChangedExtension.TraceNotified(System.ComponentModel.INotifyPropertyChanged,System.String)">
+            <summary>
+            指定したプロパティに対する <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
+            イベントの監視を開始する。
+            </summary>
+            <param name="target">監視対象のオブジェクト。</param>
+            <param name="propertyName">監視対象のプロパティ名。</param>
+            <remarks>
+            指定したプロパティに対する <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
+            イベントの監視を開始する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.INotifyPropertyChangedExtension.TraceNotified``1(System.ComponentModel.INotifyPropertyChanged,System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            指定したプロパティに対する <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
+            イベントの監視を開始する。
+            </summary>
+            <typeparam name="T">プロパティの型。</typeparam>
+            <param name="target">監視対象のオブジェクト。</param>
+            <param name="propertyExpression">監視対象のプロパティを返す <see cref="T:System.Linq.Expressions.Expression"/>。</param>
+            <remarks>
+            指定したプロパティに対する <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
+            イベントの監視を開始する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.INotifyPropertyChangedExtension.IsNotified(System.ComponentModel.INotifyPropertyChanged,System.String,System.Int32)">
+            <summary>
+            指定したプロパティに対する <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
+            イベントが発行されたかどうかを判定する値を取得する。
+            </summary>
+            <param name="target">監視対象のオブジェクト。</param>
+            <param name="propertyName">監視対象のプロパティ名。</param>
+            <param name="timeout">イベントの発行を待機する時間（ミリ秒）。デフォルトは 1 秒。</param>
+            <returns>指定したプロパティに対して変更が通知された場合は true、そうでない場合は false。</returns>
+            <remarks>
+            指定したプロパティに対する <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
+            イベントが発行されたかどうかを判定する値を取得する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.INotifyPropertyChangedExtension.IsNotified``1(System.ComponentModel.INotifyPropertyChanged,System.Linq.Expressions.Expression{System.Func{``0}},System.Int32)">
+            <summary>
+            指定したプロパティに対する <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
+            イベントが発行されたかどうかを判定する値を取得する。
+            </summary>
+            <typeparam name="T">プロパティの型。</typeparam>
+            <param name="target">監視対象のオブジェクト。</param>
+            <param name="propertyExpression">監視対象のプロパティを返す <see cref="T:System.Linq.Expressions.Expression"/>。</param>
+            <param name="timeout">イベントの発行を待機する時間（ミリ秒）。デフォルトは 1 秒。</param>
+            <returns>指定したプロパティに対して変更が通知された場合は true、そうでない場合は false。</returns>
+            <remarks>
+            指定したプロパティに対する <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
+            イベントが発行されたかどうかを判定する値を取得する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.INotifyPropertyChangedExtension.VerifyAllNotified(System.ComponentModel.INotifyPropertyChanged,System.Int32)">
+            <summary>
+            <see cref="M:Uhi.Libraries.Test.INotifyPropertyChangedExtension.TraceNotified(System.ComponentModel.INotifyPropertyChanged,System.String)"/> を指定したすべてのプロパティに対して
+            <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
+            イベントが発行されたかどうかを検証する。
+            </summary>
+            <param name="target">監視対象のオブジェクト。</param>
+            <param name="timeout">イベントの発行を待機する時間（ミリ秒）。デフォルトは 1 秒。</param>
+            <remarks>
+            <see cref="M:Uhi.Libraries.Test.INotifyPropertyChangedExtension.TraceNotified(System.ComponentModel.INotifyPropertyChanged,System.String)"/> を指定したすべてのプロパティに対して
+            <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
+            イベントが発行されたかどうかを検証する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.INotifyPropertyChangedExtension.VerifyPropertyName(System.ComponentModel.INotifyPropertyChanged,System.String)">
+            <summary>
+            オブジェクトに指定されたプロパティ名が存在することを確認する。
+            </summary>
+            <param name="target">チェック対象のオブジェクト。</param>
+            <param name="propertyName">プロパティ名。</param>
+            <remarks>
+            オブジェクトに指定されたプロパティ名が存在することを確認する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.INotifyPropertyChangedExtension.GetPropertyName``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            プロパティを返す <see cref="T:System.Linq.Expressions.Expression"/> からプロパティ名を取得する。
+            </summary>
+            <typeparam name="T">プロパティの型。</typeparam>
+            <param name="propertyExpression">プロパティを返す <see cref="T:System.Linq.Expressions.Expression"/>。</param>
+            <returns>プロパティ名。</returns>
+        </member>
+        <member name="T:Uhi.Libraries.Test.AssertExtension">
+            <summary>
+            <see cref="T:NUnit.Framework.Assert"/> をメソッドチェーンで書くための拡張メソッド群。
+            </summary>
+            <remarks>
+            <see cref="T:NUnit.Framework.Assert"/> をメソッドチェーンで書くための拡張メソッド群。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.Is``1(``0,``0)">
+            <summary>
+            ２つの値が等しいかどうかテストする。
+            </summary>
+            <typeparam name="T">任意の型。</typeparam>
+            <param name="actual">テストされる値。</param>
+            <param name="expected">期待される値。</param>
+            <remarks>
+            <see cref="M:NUnit.Framework.Assert.AreEqual(System.Object,System.Object)"/> を実行する拡張メソッド。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.IsNot``1(``0,``0)">
+            <summary>
+            ２つの値が等しくないことをテストする。
+            </summary>
+            <typeparam name="T">任意の型。</typeparam>
+            <param name="actual">テストされる値。</param>
+            <param name="expected">期待されない値。</param>
+            <remarks>
+            <see cref="M:NUnit.Framework.Assert.AreNotEqual(System.Object,System.Object)"/> を実行する拡張メソッド。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.IsNull``1(``0)">
+            <summary>
+            値が null であることをテストする。
+            </summary>
+            <typeparam name="T">任意の型。</typeparam>
+            <param name="value">テストされる値。</param>
+            <remarks>
+            <see cref="M:NUnit.Framework.Assert.IsNull(System.Object)"/> を実行する拡張メソッド。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.IsNotNull``1(``0)">
+            <summary>
+            値が null でないことをテストする。
+            </summary>
+            <typeparam name="T">任意の型。</typeparam>
+            <param name="value">テストされる値。</param>
+            <remarks>
+            <see cref="M:NUnit.Framework.Assert.IsNotNull(System.Object)"/> を実行する拡張メソッド。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.IsEmpty``1(``0)">
+            <summary>
+            コレクションが空であることをテストする。
+            </summary>
+            <typeparam name="T">任意のコレクション。</typeparam>
+            <param name="value">テストされる値。</param>
+            <remarks>
+            <see cref="M:NUnit.Framework.Assert.IsEmpty(System.Collections.IEnumerable)"/> を実行する拡張メソッド。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.AsDynamic``1(``0)">
+            <summary>
+            オブジェクトの private メンバにアクセスするためのアクセサを取得する。
+            </summary>
+            <typeparam name="T">任意の型。</typeparam>
+            <param name="target">任意のオブジェクト。</param>
+            <returns>private メンバにアクセスするための <see cref="T:System.Dynamic.DynamicObject"/>。</returns>
+            <remarks>
+            オブジェクトの private メンバにアクセスするためのアクセサを取得する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.AsDynamic(System.Object,System.Type)">
+            <summary>
+            オブジェクトの private メンバにアクセスするためのアクセサを取得する。
+            </summary>
+            <param name="target">任意のオブジェクト。</param>
+            <param name="type">オブジェクトの型。</param>
+            <returns>private メンバにアクセスするための <see cref="T:System.Dynamic.DynamicObject"/>。</returns>
+            <remarks>
+            オブジェクトの型を指定して private メンバにアクセスするためのアクセサを取得する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.CreateDynamic(System.Type,System.Object[])">
+            <summary>
+            指定した型のインスタンスを生成し、private メンバにアクセスするためのアクセサを取得する。
+            </summary>
+            <param name="type">任意の型。</param>
+            <param name="args">コンストラクタの引数。</param>
+            <returns>private メンバにアクセスするための <see cref="T:System.Dynamic.DynamicObject"/>。</returns>
+            <remarks>
+            指定した型からインスタンスを生成し、生成したインスタンスへアクセスするための
+            アクセサを取得する。<br/>
+            private クラスへのアクセスなどに使用できる。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.CreateInstance(System.Type,System.Object[])">
+            <summary>
+            指定した型のインスタンスを取得する。
+            </summary>
+            <param name="type">任意の型。</param>
+            <param name="args">コンストラクタの引数。</param>
+            <returns>指定した型のインスタンス。</returns>
+            <remarks>
+            public なコンストラクタを持たないクラスに対してインスタンスを取得する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.ToDynamic(System.Type)">
+            <summary>
+            指定した型の static な private メンバにアクセスするためのアクセサを取得する。
+            </summary>
+            <param name="type">メソッドを所有するクラスの型。</param>
+            <returns>private メンバにアクセスするための <see cref="T:System.Dynamic.DynamicObject"/>。</returns>
+            <remarks>
+            指定した型の static な private メンバにアクセスするためのアクセサを取得する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.AsStatic(System.Type)">
+            <summary>
+            指定した型の static な private メンバにアクセスするためのアクセサを取得する。
+            </summary>
+            <param name="type">メソッドを所有するクラスの型。</param>
+            <returns>private メンバにアクセスするための <see cref="T:System.Dynamic.DynamicObject"/>。</returns>
+            <remarks>
+            指定した型の static な private メンバにアクセスするためのアクセサを取得する。
+            </remarks>
+        </member>
+        <member name="T:Uhi.Libraries.Test.AssertExtension.DynamicAccessor">
+            <summary>
+            private メンバにアクセスするためのアクセサ。
+            </summary>
+        </member>
+        <member name="F:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.target">
+            <summary>
+            指定したメンバを呼び出す対象となるオブジェクト。
+            </summary>
+        </member>
+        <member name="F:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.type">
+            <summary>
+            <see cref="F:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.target"/> の型。
+            </summary>
+        </member>
+        <member name="F:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.TransparentFlags">
+            <summary>
+            メンバの検索方法を指定する <see cref="T:System.Reflection.BindingFlags"/> のビットマスク。
+            </summary>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.#ctor(System.Type)">
+            <summary>
+            <see cref="T:Uhi.Libraries.Test.AssertExtension.DynamicAccessor"/> の新しいインスタンスを生成する。
+            </summary>
+            <param name="type">メンバを検索する型。</param>
+            <remarks>
+            Static メンバのアクセス用に <see cref="T:Uhi.Libraries.Test.AssertExtension.DynamicAccessor"/> の
+            新しいインスタンスを生成する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.#ctor(System.Object,System.Type)">
+            <summary>
+            <see cref="T:Uhi.Libraries.Test.AssertExtension.DynamicAccessor"/> の新しいインスタンスを生成する。
+            </summary>
+            <param name="target">指定したメンバを呼び出す対象となるオブジェクト。</param>
+            <param name="type">オブジェクトの型。</param>
+            <remarks>
+            インスタンスメンバのアクセス用に <see cref="T:Uhi.Libraries.Test.AssertExtension.DynamicAccessor"/> の
+            新しいインスタンスを生成する。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.TryGetIndex(System.Dynamic.GetIndexBinder,System.Object[],System.Object@)">
+            <summary>
+            インデクサから値を取得する。
+            </summary>
+            <param name="binder">演算に関係する情報を提供する。</param>
+            <param name="indexes">演算に使用されるインデックス。</param>
+            <param name="result">インデクサから取得した値。</param>
+            <returns>操作が正常に終了した場合は true、そうでない場合は false。</returns>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.TrySetIndex(System.Dynamic.SetIndexBinder,System.Object[],System.Object)">
+            <summary>
+            インデクサへの値を設定する。
+            </summary>
+            <param name="binder">演算に関係する情報を提供する。</param>
+            <param name="indexes">演算に使用されるインデックス。</param>
+            <param name="value">インデクサに設定する値。</param>
+            <returns>操作が正常に終了した場合は true、そうでない場合は false。</returns>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)">
+            <summary>
+            フィールド、およびプロパティからお値を取得する。
+            </summary>
+            <param name="binder">演算を呼び出したオブジェクトに関する情報を提供する。</param>
+            <param name="result">フィールド、およびプロパティから取得した値。</param>
+            <returns>操作が正常に終了した場合は true、そうでない場合は false。</returns>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)">
+            <summary>
+            フィールド、およびプロパティに値を設定する。
+            </summary>
+            <param name="binder">演算を呼び出したオブジェクトに関する情報を提供する。</param>
+            <param name="value">フィールド、およびプロパティに設定する値。</param>
+            <returns>操作が正常に終了した場合は true、そうでない場合は false。</returns>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.TryInvokeMember(System.Dynamic.InvokeMemberBinder,System.Object[],System.Object@)">
+            <summary>
+            メソッドを呼び出す。
+            </summary>
+            <param name="binder">演算に関する情報を提供する。</param>
+            <param name="args">メソッドに渡す引数。</param>
+            <param name="result">メソッドの戻り値。</param>
+            <returns>操作が正常に終了した場合は true、そうでない場合は false。</returns>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.MatchMethod(System.String,System.Object[],System.Type[],System.Type[])">
+            <summary>
+            指定した条件に一致するメソッドの <see cref="T:System.Reflection.MethodInfo"/> を取得する。
+            </summary>
+            <param name="name">メソッド名。</param>
+            <param name="args">メソッドに渡す引数。</param>
+            <param name="typeArgs">メソッドの型引数。</param>
+            <param name="paramTypes">引数の型。</param>
+            <returns>指定した条件に一致するメソッド。</returns>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.AssignableBoundType(System.Type,System.Type)">
+            <summary>
+            ２つの型のうち、継承関係で上位にある型を取得する。
+            </summary>
+            <param name="left">比較対象の型。</param>
+            <param name="right">比較対象の型。</param>
+            <returns>継承関係で上位にある型。２つの型に互換性がない場合は null。</returns>
+        </member>
+        <member name="T:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.ReflectAccessor">
+            <summary>
+            リフレクションを利用してフィールド、およびプロパティへのアクセスを行なうためのアクセサ。
+            </summary>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.ReflectAccessor.#ctor(System.Object,System.Type,System.String,System.Reflection.BindingFlags)">
+            <summary>
+            <see cref="T:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.ReflectAccessor"/> の新しいインスタンスを生成する。
+            </summary>
+            <param name="target">メンバを呼び出す対象となるオブジェクト。</param>
+            <param name="type">オブジェクトの型。</param>
+            <param name="name">呼び出すメンバ名。</param>
+            <param name="flags">メンバの検索方法を指定する <see cref="T:System.Reflection.BindingFlags"/> のビットマスク。</param>
+        </member>
+        <member name="P:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.ReflectAccessor.GetValue">
+            <summary>
+            フィールド、およびプロパティから値を取得する。
+            </summary>
+        </member>
+        <member name="P:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.ReflectAccessor.SetValue">
+            <summary>
+            フィールド、およびプロパティへ値を設定する。
+            </summary>
+        </member>
+        <member name="T:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.EqualsComparer`1">
+            <summary>
+            オブジェクトの比較に使用するデリゲートを外部から与える
+            <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> 実装。
+            </summary>
+            <typeparam name="TX">比較するオブジェクトの型。</typeparam>
+        </member>
+        <member name="F:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.EqualsComparer`1.equals">
+            <summary>
+            オブジェクトの比較に使用するデリゲート。
+            </summary>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.EqualsComparer`1.#ctor(System.Func{`0,`0,System.Boolean})">
+            <summary>
+            <see cref="T:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.EqualsComparer`1"/> の新しいインスタンスを生成する。
+            </summary>
+            <param name="equals">オブジェクトの比較に使用するデリゲート。</param>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.EqualsComparer`1.Equals(`0,`0)">
+            <summary>
+            指定したオブジェクトが等しいかどうかを判断する。
+            </summary>
+            <param name="x">比較対象のオブジェクト。</param>
+            <param name="y">比較対象のオブジェクト。</param>
+            <returns>オブジェクトが等しい場合は true、そうでない場合は false。</returns>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssertExtension.DynamicAccessor.EqualsComparer`1.GetHashCode(`0)">
+            <summary>
+            指定したオブジェクトのハッシュコードを返す。
+            </summary>
+            <param name="obj">対象のオブジェクト。</param>
+            <returns>指定したオブジェクトのハッシュコード。</returns>
+        </member>
+        <member name="T:Uhi.Libraries.Test.AssemblyExtension">
+            <summary>
+            <see cref="T:System.Reflection.Assembly"/> の拡張メソッド群。
+            </summary>
+            <remarks>
+            <see cref="T:System.Reflection.Assembly"/> の拡張メソッド群。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssemblyExtension.GetInstance(System.Type,System.Object[])">
+            <summary>
+            指定した型のインスタンスを取得する。
+            </summary>
+            <param name="type">インスタンスを生成する型。</param>
+            <param name="args">コンストラクタの引数。</param>
+            <returns>型のインスタンス。</returns>
+            <remarks>
+            <see cref="T:System.Reflection.Assembly"/> から指定した型のインスタンスを取得する。<br/>
+            private なクラスのインスタンスを取得する際に利用。
+            </remarks>
+        </member>
+        <member name="M:Uhi.Libraries.Test.AssemblyExtension.GetInstance(System.Reflection.Assembly,System.String,System.Object[])">
+            <summary>
+            <see cref="T:System.Reflection.Assembly"/> から指定した型のインスタンスを取得する。
+            </summary>
+            <param name="assembly">生成する型を含む <see cref="T:System.Reflection.Assembly"/>。</param>
+            <param name="type">生成する型を表す文字列。</param>
+            <param name="args">コンストラクタの引数。</param>
+            <returns>型のインスタンス。</returns>
+            <remarks>
+            <see cref="T:System.Reflection.Assembly"/> から指定した型のインスタンスを取得する。<br/>
+            private なクラスのインスタンスを取得する際に利用。
+            </remarks>
+        </member>
+    </members>
+</doc>
